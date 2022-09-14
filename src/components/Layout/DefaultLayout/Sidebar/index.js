@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
 
 const Sidebar = () => {
-  return (
-    <h2>Sidebar</h2>
-  )
-}
-
-export default Sidebar
+    return <StyledSideBar>Sidebar</StyledSideBar>;
+};
+const StyledSideBar = styled.div`
+    width: 356px;
+    min-height: 1000px;
+`;
+export default Sidebar;
