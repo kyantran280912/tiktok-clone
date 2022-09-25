@@ -1,25 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Tippy from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css'; // optional
+import { Wrapper as PopperWrapper } from './Popper';
 const Header = () => {
+    const [SearchResult, setSearchResult] = useState([]);
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchResult([1, 2, 3]);
+        }, 2000);
+    }, []);
     return (
         <StyledHeader>
             <div className="inner">
                 <div className="logo">
                     <img src={images.logo} alt="Tiktok" />
                 </div>
-                <div className="search">
-                    <input type="text" placeholder="Search accounts and video" spellCheck={false} />
-                    <button className="clear">
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
-                    <FontAwesomeIcon className="loading" icon={faSpinner} />
-                    <button className="search-btn">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </button>
-                </div>
+                <Tippy
+                    visible={SearchResult.length > 0}
+                    interactive
+                    render={(attrs) => (
+                        <PopperWrapper>
+                            <div className="search-result" {...attrs}>
+                                My box search
+                            </div>
+                        </PopperWrapper>
+                    )}
+                >
+                    <div className="search">
+                        <input type="text" placeholder="Search accounts and video" spellCheck={false} />
+
+                        <button className="clear">
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                        <FontAwesomeIcon className="loading" icon={faSpinner} />
+                        <button className="search-btn">
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
+                    </div>
+                </Tippy>
                 <div className="action"></div>
             </div>
         </StyledHeader>
@@ -58,8 +80,8 @@ const StyledHeader = styled.header`
             flex: 1;
             caret-color: var(--pri);
         }
-        input:not(:placeholder-shown) ~ .search-btn{
-            color: rgba(22, 24, 35, 0.75)
+        input:not(:placeholder-shown) ~ .search-btn {
+            color: rgba(22, 24, 35, 0.75);
         }
         ::after {
             content: '';
@@ -93,9 +115,8 @@ const StyledHeader = styled.header`
         &:hover {
             background-color: rgba(22, 24, 35, 0.03);
         }
-        :active{
+        :active {
             background-color: rgba(22, 24, 35, 0.06);
-
         }
     }
     .action {
