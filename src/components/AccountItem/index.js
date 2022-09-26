@@ -24,10 +24,10 @@ const AccountItem = () => {
 const StyledAccountItem = styled.div`
     display: flex;
     align-items: center;
-    padding: 9px 16px;
+    padding: 6px 16px;
     cursor: pointer;
     :hover{
-        background-color: rgba(22, 24, 35, 0.3);
+        background-color: rgba(22, 24, 35, 0.03);
 
     }
     .avatar {

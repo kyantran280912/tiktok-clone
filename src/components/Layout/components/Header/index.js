@@ -7,6 +7,7 @@ import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css'; // optional
 import { Wrapper as PopperWrapper } from '../../../Popper';
 import AccountItem from '~/components/AccountItem';
+import Button from "~/components/Button"
 const Header = () => {
     const [SearchResult, setSearchResult] = useState([]);
     useEffect(() => {
@@ -46,7 +47,9 @@ const Header = () => {
                         </button>
                     </div>
                 </Tippy>
-                <div className="action"></div>
+                <div className="action">
+                    <Button >Login</Button>
+                </div>
             </div>
         </StyledHeader>
     );
@@ -57,6 +60,12 @@ const StyledHeader = styled.header`
     --search-boder-radius: 92px;
     --search-height: 46px;
     --search-top-spacer: 9px;
+    .search-title{
+        color: rgba(22, 24, 35, 0.5);
+        font-weight: 500;
+        font-size: 1.4rem;
+        padding: 5px 12px;
+    }
     .inner {
         height: 100%;
         max-width: var(--default-layout);
