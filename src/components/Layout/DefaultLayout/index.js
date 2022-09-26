@@ -1,4 +1,4 @@
-import Sidebar from './Sidebar';
+import Sidebar from '../components/Sidebar';
 import React from 'react';
 import Header from '../components/Header';
 import styled from 'styled-components';

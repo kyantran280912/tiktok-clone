@@ -5,13 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css'; // optional
-import { Wrapper as PopperWrapper } from './Popper';
+import { Wrapper as PopperWrapper } from '../../../Popper';
+import AccountItem from '~/components/AccountItem';
 const Header = () => {
     const [SearchResult, setSearchResult] = useState([]);
     useEffect(() => {
         setTimeout(() => {
             setSearchResult([1, 2, 3]);
-        }, 2000);
+        }, 0);
     }, []);
     return (
         <StyledHeader>
@@ -23,11 +24,14 @@ const Header = () => {
                     visible={SearchResult.length > 0}
                     interactive
                     render={(attrs) => (
-                        <PopperWrapper>
-                            <div className="search-result" {...attrs}>
-                                My box search
-                            </div>
-                        </PopperWrapper>
+                        <div className="search-result" {...attrs}>
+                            <PopperWrapper>
+                                <h4 className="search-title">
+                                    Account
+                                </h4>
+                                <AccountItem/>
+                            </PopperWrapper>
+                        </div>
                     )}
                 >
                     <div className="search">
@@ -60,6 +64,9 @@ const StyledHeader = styled.header`
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    .search-result{
+        width: 361px;
     }
     /* .logo {
     } */
