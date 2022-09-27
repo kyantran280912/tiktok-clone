@@ -48,7 +48,7 @@ const Header = () => {
                     </div>
                 </Tippy>
                 <div className="action">
-                    <Button >Login</Button>
+                    <Button outline small>Login</Button>
                 </div>
             </div>
         </StyledHeader>

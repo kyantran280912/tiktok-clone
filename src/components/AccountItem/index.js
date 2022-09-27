@@ -13,7 +13,7 @@ const AccountItem = () => {
             />
             <div className="info">
                 <h4 className="name">
-                    <span>Nguyen Van A</span>
+                    <span>Nguyen Thu Trang</span>
                     <FontAwesomeIcon className="check-icon" icon={faCheckCircle} />
                 </h4>
                 <span className="username">nguyenvana</span>
@@ -26,9 +26,8 @@ const StyledAccountItem = styled.div`
     align-items: center;
     padding: 6px 16px;
     cursor: pointer;
-    :hover{
+    :hover {
         background-color: rgba(22, 24, 35, 0.03);
-
     }
     .avatar {
         width: 40px;
