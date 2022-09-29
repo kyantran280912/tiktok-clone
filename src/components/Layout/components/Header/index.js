@@ -48,7 +48,8 @@ const Header = () => {
                     </div>
                 </Tippy>
                 <div className="action">
-                    <Button outline small>Login</Button>
+                    <Button primary >Login</Button>
+                    <Button outline >Login</Button>
                 </div>
             </div>
         </StyledHeader>
