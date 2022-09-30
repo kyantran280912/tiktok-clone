@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleXmark,
+    faSpinner,
+    faMagnifyingGlass,
+    faSignIn,
+    faEllipsisVertical,
+} from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css'; // optional
 import { Wrapper as PopperWrapper } from '../../../Popper';
-import AccountItem from '~/components/AccountItem';
-import Button from "~/components/Button"
+import AccountItem from '~/components/AccountItem/AccountItem';
+import Button from '~/components/Button/Button';
 const Header = () => {
     const [SearchResult, setSearchResult] = useState([]);
     useEffect(() => {
@@ -27,10 +33,8 @@ const Header = () => {
                     render={(attrs) => (
                         <div className="search-result" {...attrs}>
                             <PopperWrapper>
-                                <h4 className="search-title">
-                                    Account
-                                </h4>
-                                <AccountItem/>
+                                <h4 className="search-title">Account</h4>
+                                <AccountItem />
                             </PopperWrapper>
                         </div>
                     )}
@@ -48,8 +52,25 @@ const Header = () => {
                     </div>
                 </Tippy>
                 <div className="action">
-                    <Button primary >Login</Button>
-                    <Button outline >Login</Button>
+                    <Button text>Upload</Button>
+                    <Button primary>Login</Button>
+                    <Tippy
+                    
+                        visible
+                        interactive
+                        render={(attrs) => (
+                            <div className="menu-items" {...attrs}>
+                                <PopperWrapper>
+                                    <h4 className="search-title">Account</h4>
+                                    <AccountItem />
+                                </PopperWrapper>
+                            </div>
+                        )}
+                    >
+                        <button className="more-btn">
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Tippy>
                 </div>
             </div>
         </StyledHeader>
@@ -61,7 +82,12 @@ const StyledHeader = styled.header`
     --search-boder-radius: 92px;
     --search-height: 46px;
     --search-top-spacer: 9px;
-    .search-title{
+    .more-btn {
+        font-size: 2rem;
+        margin-left: 24px;
+        background-color: transparent;
+    }
+    .search-title {
         color: rgba(22, 24, 35, 0.5);
         font-weight: 500;
         font-size: 1.4rem;
@@ -75,7 +101,7 @@ const StyledHeader = styled.header`
         justify-content: space-between;
         align-items: center;
     }
-    .search-result{
+    .search-result {
         width: 361px;
     }
     /* .logo {
@@ -136,7 +162,9 @@ const StyledHeader = styled.header`
             background-color: rgba(22, 24, 35, 0.06);
         }
     }
-    .action {
+    /* Menu item */
+    .menu-items{
+        width: 224px;
     }
 `;
 export default Header;
