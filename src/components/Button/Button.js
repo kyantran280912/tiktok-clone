@@ -50,7 +50,7 @@ const Button = ({
             disabled={disabled}
             rounded={rounded}
         >
-            <Comp className="comp-btn">
+            <Comp className="comp-btn" to={to} href={href}>
                 {leftIcon && <span className="icon">{leftIcon}</span>}
                 <span className="title">{children}</span>
                 {rightIcon && <span className="icon">{rightIcon}</span>}
@@ -59,7 +59,8 @@ const Button = ({
     );
 };
 const StyledButton = styled.div`
-    display: inline-block;
+    display: inline-flex;
+    cursor: pointer;
     + .wrapper {
         margin-left: 10px;
         display: inline-flex;
@@ -75,9 +76,10 @@ const StyledButton = styled.div`
         font-size: 1.6rem;
         font-weight: 700;
         border-radius: 4px;
-        cursor: pointer;
-        background-color: white;
         border: 1px solid transparent;
+        background-color: transparent;
+        cursor: pointer;
+
         user-select: none;
         ${(props) =>
             props.rounded &&
@@ -135,6 +137,11 @@ const StyledButton = styled.div`
                 pointer-events: none;
                 opacity: 0.5;
             `};
+    }
+    .icon {
+        display: inline-block;
+        width: 20px;
+        text-align: center;
     }
 `;
 

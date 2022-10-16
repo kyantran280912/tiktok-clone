@@ -33,3 +33,26 @@ a[href] {
     color: var(--text-color);
     text-decoration: none;
 }
+button {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+// Font Embeded
+
+
+
+// Custom Tooltip tippy
+body {
+    .tippy-box {
+    background-color: rgba(84, 84, 84, 0.92);
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    border-radius: 8px;
+    }
+    .tippy-arrow{
+        color: rgba(84, 84, 84, 0.92)
+    }
+}
+
