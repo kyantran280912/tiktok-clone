@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -145,6 +145,16 @@ const Header = () => {
         </StyledHeader>
     );
 };
+const Spinner = keyframes`
+  
+        from {
+            transform: translateY(-50%) rotate(0);
+        }
+        to {
+            transform: translateY(-50%) rotate(360deg);
+        }
+    
+`;
 const StyledHeader = styled.header`
     height: 60px;
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
@@ -208,10 +218,14 @@ const StyledHeader = styled.header`
     .loading {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
         right: calc(52px + 10px);
         color: rgba(22, 24, 35, 0.34);
+        transform: translateY(-50%);
     }
+    .loading {
+        animation: ${Spinner} 1s linear infinite;
+    }
+
     .search-btn {
         width: 52px;
         height: 100%;

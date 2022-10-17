@@ -1,12 +1,13 @@
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import styled from 'styled-components';
 import Image from '../image/Image';
 
 const AccountItem = ({ data }) => {
     return (
-        <StyledAccountItem>
+        <StyledAccountItem to={`/@data${data.nickname}`}>
             <Image src={data.avatar} className="avatar" alt={data.full_name} />
             <div className="info">
                 <h4 className="name">
@@ -18,7 +19,7 @@ const AccountItem = ({ data }) => {
         </StyledAccountItem>
     );
 };
-const StyledAccountItem = styled.div`
+const StyledAccountItem = styled(Link)`
     display: flex;
     align-items: center;
     padding: 6px 16px;

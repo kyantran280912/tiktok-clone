@@ -12,6 +12,8 @@ import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import AccountItem from '~/components/AccountItem/AccountItem';
 import { Wrapper as PopperWrapper } from '../../../Popper';
+import * as request from '~/utils/request';
+import { useDebounce } from '~/hooks';
 
 const Search = () => {
     const [searchValue, setsearchValue] = useState('');
@@ -19,21 +21,29 @@ const Search = () => {
     const [showResult, setshowResult] = useState(true);
     const [loading, setloading] = useState(false);
 
+    const debounce = useDebounce(searchValue, 700);
+
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) return;
-        setloading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setloading(false);
-            })
-            .catch(() => {
-                setloading(false);
+        if (!debounce.trim()) {
+            setSearchResult([]);
+            return;
+        }
+
+        const fetchApi = async () => {
+            const res = await request.get(`users/search`, {
+                params: {
+                    q: debounce,
+                    type: 'less',
+                },
             });
-    }, [searchValue]);
+            setSearchResult(res.data);
+            setloading(false);
+        };
+
+        setloading(true);
+    }, [debounce]);
 
     const handleClear = () => {
         setsearchValue('');
@@ -70,11 +80,11 @@ const Search = () => {
                     onChange={(e) => setsearchValue(e.target.value)}
                     onFocus={() => setshowResult(true)}
                 />
-                {/* {!!searchValue && !loading && (
+                {!!searchValue && !loading && (
                     <button className="clear" onClick={handleClear}>
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
-                )} */}
+                )}
                 {loading && <FontAwesomeIcon className="loading" icon={faSpinner} />}
                 <button className="search-btn">
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
