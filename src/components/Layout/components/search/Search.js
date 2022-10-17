@@ -70,11 +70,11 @@ const Search = () => {
                     onChange={(e) => setsearchValue(e.target.value)}
                     onFocus={() => setshowResult(true)}
                 />
-                {!!searchValue && !loading && (
+                {/* {!!searchValue && !loading && (
                     <button className="clear" onClick={handleClear}>
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
-                )}
+                )} */}
                 {loading && <FontAwesomeIcon className="loading" icon={faSpinner} />}
                 <button className="search-btn">
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
