@@ -4,20 +4,16 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from '../image/Image';
 
-const AccountItem = () => {
+const AccountItem = ({ data }) => {
     return (
         <StyledAccountItem>
-            <Image
-                src="https://images.unsplash.com/photo-1664176702106-4196b5cf06d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60"
-                className="avatar"
-                alt="Avatar"
-            />
+            <Image src={data.avatar} className="avatar" alt={data.full_name} />
             <div className="info">
                 <h4 className="name">
-                    <span>Nguyen Thu Trang</span>
-                    <FontAwesomeIcon className="check-icon" icon={faCheckCircle} />
+                    <span>{data.full_name}</span>
+                    {data.tick && <FontAwesomeIcon className="check-icon" icon={faCheckCircle} />}
                 </h4>
-                <span className="username">nguyenvana</span>
+                <span className="username">{data.nickname}</span>
             </div>
         </StyledAccountItem>
     );
