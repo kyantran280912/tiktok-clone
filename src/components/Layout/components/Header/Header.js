@@ -21,6 +21,8 @@ import Button from '~/components/Button/Button';
 import { MessageIcon } from '~/components/icons/Icon';
 import Image from '~/components/image/Image';
 import Search from '../search/Search';
+import { Link } from 'react-router-dom';
+import routesConfig from '~/config/routes';
 
 const MENU_ITEMS = [
     {
@@ -95,7 +97,9 @@ const Header = () => {
         <StyledHeader>
             <div className="inner">
                 <div className="logo">
-                    <img src={images.logo} alt="Tiktok" />
+                    <Link to={routesConfig.home} className="logo-link">
+                        <img src={images.logo} alt="Tiktok" />
+                    </Link>
                 </div>
                 {/* Search */}
                 <Search />
@@ -179,8 +183,12 @@ const StyledHeader = styled.header`
     .search-result {
         width: 361px;
     }
-    /* .logo {
-    } */
+    /* logo */
+    .logo-link {
+        display: flex;
+        align-items: center;
+    }
+
     .search {
         width: 361px;
         height: var(--search-height);

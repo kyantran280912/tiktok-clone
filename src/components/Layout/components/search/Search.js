@@ -14,7 +14,7 @@ import AccountItem from '~/components/AccountItem/AccountItem';
 import { Wrapper as PopperWrapper } from '../../../Popper';
 import * as request from '~/utils/request';
 import { useDebounce } from '~/hooks';
-
+import * as SearchService from '~/apiService/SearchService';
 const Search = () => {
     const [searchValue, setsearchValue] = useState('');
     const [SearchResult, setSearchResult] = useState([]);
@@ -32,17 +32,12 @@ const Search = () => {
         }
 
         const fetchApi = async () => {
-            const res = await request.get(`users/search`, {
-                params: {
-                    q: debounce,
-                    type: 'less',
-                },
-            });
-            setSearchResult(res.data);
+            setloading(true);
+            const result = await SearchService.search(debounce);
+            setSearchResult(result);
             setloading(false);
         };
-
-        setloading(true);
+        fetchApi();
     }, [debounce]);
 
     const handleClear = () => {
@@ -52,6 +47,12 @@ const Search = () => {
     };
     const handleHideResult = () => {
         setshowResult(false);
+    };
+    const handleChange = (e) => {
+        const SearchValue = e.target.value;
+        if (!SearchValue.startsWith(' ')) {
+            setsearchValue(SearchValue);
+        }
     };
     return (
         <Tippy
@@ -77,7 +78,7 @@ const Search = () => {
                     placeholder="Search accounts and video"
                     spellCheck={false}
                     value={searchValue}
-                    onChange={(e) => setsearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setshowResult(true)}
                 />
                 {!!searchValue && !loading && (

@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import styled from 'styled-components';
 import Image from '../image/Image';
+import routesConfig from '~/config/routes';
 
 const AccountItem = ({ data }) => {
     return (
-        <StyledAccountItem to={`/@data${data.nickname}`}>
+        <StyledAccountItem to={`${routesConfig.profile}${data.nickname}`}>
             <Image src={data.avatar} className="avatar" alt={data.full_name} />
             <div className="info">
                 <h4 className="name">
