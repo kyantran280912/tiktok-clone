@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,16 +13,15 @@ import {
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from '@tippyjs/react';
-import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css'; // optional
-import { Menu } from '../../../Popper';
+import { Menu } from '~/components/Popper';
 
 import Button from '~/components/Button/Button';
 import { MessageIcon } from '~/components/icons/Icon';
 import Image from '~/components/image/Image';
 import Search from '../search/Search';
 import { Link } from 'react-router-dom';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 
 const MENU_ITEMS = [
     {
@@ -97,7 +96,7 @@ const Header = () => {
         <StyledHeader>
             <div className="inner">
                 <div className="logo">
-                    <Link to={routesConfig.home} className="logo-link">
+                    <Link to={config.routes.home} className="logo-link">
                         <img src={images.logo} alt="Tiktok" />
                     </Link>
                 </div>
@@ -160,7 +159,13 @@ const Spinner = keyframes`
     
 `;
 const StyledHeader = styled.header`
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 60px;
+    width: 100%;
+    background-color: white;
+    z-index: 10;
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     --search-boder-radius: 92px;
     --search-height: 46px;
@@ -298,12 +303,18 @@ const StyledHeader = styled.header`
 
         .menu-popper {
             padding-bottom: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-body {
+            overflow-y: auto;
         }
     }
     .header-menu {
         position: relative;
         height: 50px;
         margin-top: -8px;
+        flex-shrink: 0;
     }
     .back-btn {
         width: 50px;

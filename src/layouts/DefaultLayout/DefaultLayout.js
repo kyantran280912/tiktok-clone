@@ -19,6 +19,7 @@ const StyledDefaultLayout = styled.div`
         max-width: var(--default-layout);
         margin: 0 auto;
         display: flex;
+        margin-top: 60px;
     }
     .content {
         flex: 1;

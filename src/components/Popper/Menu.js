@@ -27,6 +27,7 @@ const Menu = ({ children, items = [], onChange = () => null }) => {
 
     return (
         <Tippy
+            // visible
             placement="bottom-end"
             delay={[0, 300]}
             interactive
@@ -39,7 +40,7 @@ const Menu = ({ children, items = [], onChange = () => null }) => {
                                 onBack={() => sethistory((prev) => prev.slice(0, prev.length - 1))}
                             />
                         )}
-                        {renderItems()}
+                        <div className="menu-body">{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
