@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import images from '~/assets/images';
@@ -100,6 +101,7 @@ const Header = () => {
                         <img src={images.logo} alt="Tiktok" />
                     </Link>
                 </div>
+                <Button>{['f8', ' ', 'react']}</Button>
                 {/* Search */}
                 <Search />
                 <div className="actions">
@@ -148,6 +150,7 @@ const Header = () => {
         </StyledHeader>
     );
 };
+
 const Spinner = keyframes`
   
         from {
@@ -210,6 +213,7 @@ const StyledHeader = styled.header`
             background-color: transparent;
             flex: 1;
             caret-color: var(--pri);
+            padding-right: 40px;
         }
         input:not(:placeholder-shown) ~ .search-btn {
             color: rgba(22, 24, 35, 0.75);

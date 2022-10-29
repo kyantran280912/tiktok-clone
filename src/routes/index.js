@@ -1,11 +1,17 @@
+import config from '~/config';
+
+// Layout
 import { HeaderOnly } from '~/layouts';
+
+// Page
 import Home from '~/pages/Home/Home';
 import Following from '~/pages/Following';
 import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/search/Search';
 import NotFound from '~/pages/NotFound';
-import config from '~/config';
+
+// config Routes
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.following, component: Following },

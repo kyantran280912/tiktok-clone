@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -20,6 +21,10 @@ const AccountItem = ({ data }) => {
         </StyledAccountItem>
     );
 };
+AccountItem.propTypes = {
+    data: PropTypes.object.isRequired,
+};
+
 const StyledAccountItem = styled(Link)`
     display: flex;
     align-items: center;

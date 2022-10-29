@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -58,6 +59,23 @@ const Button = ({
         </StyledButton>
     );
 };
+Button.propTypes = {
+    to: PropTypes.string,
+    href: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+    primary: PropTypes.bool,
+    disabled: PropTypes.bool,
+    text: PropTypes.bool,
+    rounded: PropTypes.bool,
+    outline: PropTypes.bool,
+    small: PropTypes.bool,
+    large: PropTypes.bool,
+    className: PropTypes.string,
+    onClick: PropTypes.func,
+};
+
 const StyledButton = styled.div`
     display: inline-flex;
     cursor: pointer;
@@ -79,7 +97,7 @@ const StyledButton = styled.div`
         border: 1px solid transparent;
         background-color: transparent;
         cursor: pointer;
-
+        text-align: center;
         user-select: none;
         ${(props) =>
             props.rounded &&

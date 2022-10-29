@@ -20,24 +20,24 @@ const Search = () => {
     const [showResult, setshowResult] = useState(true);
     const [loading, setloading] = useState(false);
 
-    const debounce = useDebounce(searchValue, 700);
+    const debounceValue = useDebounce(searchValue, 700);
 
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!debounce.trim()) {
+        if (!debounceValue.trim()) {
             setSearchResult([]);
             return;
         }
 
         const fetchApi = async () => {
             setloading(true);
-            const result = await SearchService.search(debounce);
+            const result = await SearchService.search(debounceValue);
             setSearchResult(result);
             setloading(false);
         };
         fetchApi();
-    }, [debounce]);
+    }, [debounceValue]);
 
     const handleClear = () => {
         setsearchValue('');
@@ -66,7 +66,7 @@ const Search = () => {
                         <PopperWrapper>
                             <h4 className="search-title">Account</h4>
                             {SearchResult.map((item) => (
-                                <AccountItem key={item.id} data={item} />
+                                <AccountItem key={item.id} data={true} />
                             ))}
                         </PopperWrapper>
                     </div>
